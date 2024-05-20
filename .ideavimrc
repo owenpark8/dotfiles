@@ -1,0 +1,36 @@
+let mapleader=" "
+
+"" -- Plugins
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'machakann/vim-highlightedyank'
+
+"" -- Common settings
+" Relative line numbers
+set relativenumber
+set number
+
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+set incsearch
+set nu
+
+"" -- Idea settings
+set ideajoin
+set ideastatusicon=gray
+
+"" -- Key mappings
+map <leader>r <Action>(ReformatCode)
+map <leader>t <Action>(ActivateTerminalToolWindow)
+map <leader>b <Action>(Build)
+" Debugger
+map <leader>d <Action>(Debug)
+map <leader>. <Action>(StepInto)
+map <leader>, <Action>(StepOut)
+map <leader>/ <Action>(StepOver)
+map <leader>c <Action>(Stop)
+" map <leader>b <Action>(ToggleLineBreakpoint)
+
