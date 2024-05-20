@@ -1,0 +1,7 @@
+[user]
+	name = Owen Park
+	email = owenmmp@gmail.com
+[core]
+        editor = nvim
+[init]
+        defaultBranch = main
