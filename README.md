@@ -42,14 +42,23 @@ git clone git@github.com:owenpark8/config.git ~/config-repo
 ### zsh
 
 1. Install Oh My Zsh
-   ```sh
-   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-   ```
+  ```sh
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  ```
 2. Use .zshrc from this repo
-   ```sh
-   cp ~/config-repo/.zshrc ~/.zshrc
-   ```
-3. Installing fzf 
+  ```sh
+  cp ~/config-repo/.zshrc ~/.zshrc
+  ```
+3. Install fzf 
+  Follow the "Using git" instructions in the [repo](https://github.com/junegunn/fzf?tab=readme-ov-file#using-git)
+
+4. Install [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh) and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh)
+  ```sh
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  ```
+  ```sh
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  ```
 
 <!-- TODO -->
 ## TODO
@@ -57,4 +66,5 @@ git clone git@github.com:owenpark8/config.git ~/config-repo
 - [ ] nvim
 - [ ] i3
 - [ ] tmux
+- [ ] knomad
 - [ ] a whole lot more
