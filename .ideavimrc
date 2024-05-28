@@ -26,6 +26,13 @@ set ideastatusicon=gray
 map <leader>r <Action>(ReformatCode)
 map <leader>t <Action>(ActivateTerminalToolWindow)
 map <leader>b <Action>(Build)
+" Navigation
+sethandler <c-j> a:vim
+sethandler <c-k> a:vim
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
 " Debugger
 map <leader>d <Action>(Debug)
 map <leader>. <Action>(StepInto)
