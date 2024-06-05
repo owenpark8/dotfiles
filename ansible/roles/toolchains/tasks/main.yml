@@ -49,7 +49,6 @@
     cache_valid_time: 604800
     state: latest
     name:
-      - zsh
       - neovim
       - sudo
       - cmake

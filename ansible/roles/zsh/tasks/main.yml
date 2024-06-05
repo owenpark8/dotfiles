@@ -1,0 +1,46 @@
+- name: Install APT Packages
+  become: True
+  apt:
+    cache_valid_time: 604800
+    state: latest
+    name:
+      - zsh
+      - curl # for fzf install
+
+- name: Oh-My-Zsh
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: ~/.oh-my-zsh
+    version: master
+
+- name: .zshrc
+  synchronize:
+    # The trailing slash is very important here
+    # It tells rsync to copy only the CONTENTS of the folder and not the folder itself
+    # This is vital to make sure this works will any usernames
+    src: files/config/
+    dest: ~/
+    recursive: true
+
+- name: ZSH Automatic Suggestions Plugin
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+- name: ZSH Syntax Highlighting Plugin
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
+- name: Clone ZSH Fuzzy Finder Plugin (fzf) repo
+  git:
+    repo: https://github.com/junegunn/fzf
+    dest: ~/.fzf
+
+- name: Install ZSH Fuzzy Finder Plugin
+  command: ~/.fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+
+- name: Use ZSH as a default shell
+  become: true
+  command: chsh --shell /usr/bin/zsh {{ ansible_user_id }} 
+
