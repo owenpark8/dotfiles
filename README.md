@@ -28,7 +28,7 @@
 2. Packages !
 
   ```sh
-  sudo apt install git zsh neovim tmux i3 clangd clang-tidy clang-format cmake ccache python3-pip
+  sudo apt install git zsh neovim tmux i3 clangd clang-tidy clang-format cmake ccache python3-pip xdotool
   ```
 
 ### Git
@@ -67,7 +67,7 @@ git clone git@github.com:owenpark8/config.git ~/config
   cp -r ~/config/i3 ~/.config
   ```
 
-2. Install i3-ressurect
+2. Install i3-resurrect
   ```sh
   pip3 install --user --upgrade i3-resurrect
   ```
