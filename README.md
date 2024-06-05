@@ -28,7 +28,7 @@
 2. Packages !
 
   ```sh
-  sudo apt install git zsh neovim tmux clangd clang-tidy clang-format cmake ccache python3-pip 
+  sudo apt install git zsh neovim tmux i3 clangd clang-tidy clang-format cmake ccache python3-pip
   ```
 
 ### Git
@@ -36,7 +36,7 @@
 1. [ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
 2. Done. Now clone this repo, buddy.
 ```sh
-git clone git@github.com:owenpark8/config.git ~/config-repo
+git clone git@github.com:owenpark8/config.git ~/config
 ```
 
 ### zsh
@@ -47,7 +47,7 @@ git clone git@github.com:owenpark8/config.git ~/config-repo
   ```
 2. Use .zshrc from this repo
   ```sh
-  cp ~/config-repo/.zshrc ~/.zshrc
+  cp ~/config/.zshrc ~/.zshrc
   ```
 3. Install fzf 
   Follow the "Using git" instructions in the [repo](https://github.com/junegunn/fzf?tab=readme-ov-file#using-git)
@@ -60,11 +60,22 @@ git clone git@github.com:owenpark8/config.git ~/config-repo
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
   ```
 
+### i3
+
+1. Use config from this repo
+  ```sh
+  cp -r ~/config/i3 ~/.config
+  ```
+
+2. Install i3-ressurect
+  ```sh
+  pip3 install --user --upgrade i3-resurrect
+  ```
+
 <!-- TODO -->
 ## TODO
 
 - [ ] nvim
-- [ ] i3
 - [ ] tmux
 - [ ] knomad
 - [ ] a whole lot more
