@@ -7,13 +7,13 @@
       - zsh
       - curl # for fzf install
 
-- name: Oh-My-Zsh
+- name: Install oh-my-zsh
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     dest: ~/.oh-my-zsh
     version: master
 
-- name: .zshrc
+- name: Copy .zshrc
   synchronize:
     # The trailing slash is very important here
     # It tells rsync to copy only the CONTENTS of the folder and not the folder itself
@@ -22,25 +22,28 @@
     dest: ~/
     recursive: true
 
-- name: ZSH Automatic Suggestions Plugin
+- name: Install zsh-autosuggestions plugin
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
-- name: ZSH Syntax Highlighting Plugin
+- name: Install zsh-syntaxhighlighting plugin
   git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting
     dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
-- name: Clone ZSH Fuzzy Finder Plugin (fzf) repo
+- name: Clone fzf plugin repo
   git:
     repo: https://github.com/junegunn/fzf
     dest: ~/.fzf
 
-- name: Install ZSH Fuzzy Finder Plugin
+- name: Install fzf plugin
   command: ~/.fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
 
-- name: Use ZSH as a default shell
+- name: Install zoxide plugin
+  command: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+
+- name: Use zsh as the default shell
   become: true
   command: chsh --shell /usr/bin/zsh {{ ansible_user_id }} 
 
