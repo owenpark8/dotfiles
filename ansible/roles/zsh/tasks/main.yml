@@ -40,8 +40,19 @@
 - name: Install fzf plugin
   command: ~/.fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
 
-- name: Install zoxide plugin
-  command: curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+- name: Download the zoxide install script
+  get_url:
+    url: https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh
+    dest: /tmp/install_zoxide.sh
+    mode: '0755'
+    
+- name: Install zoxide plugin 
+  shell: sh /tmp/install_zoxide.sh
+
+- name: Clean up the zoxide install script
+  file:
+    path: /tmp/install_zoxide.sh
+    state: absent
 
 - name: Use zsh as the default shell
   become: true
