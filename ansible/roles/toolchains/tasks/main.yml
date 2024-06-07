@@ -87,6 +87,28 @@
       - vainfo
       - x264
 
+- name: Install nvm
+  ansible.builtin.shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+
+- name: Install node (latest)
+  command: nvm install node
+
+- name: Download Bun Installer
+  get_url:
+    url: https://bun.sh/install
+    dest: /tmp/bun_installer.sh
+    mode: 0755
+
+- name: Run Bun Installer
+  command: /tmp/bun_installer.sh
+  args:
+    creates: ~/.bun/bin/bun
+
+- name: Upgrade Bun
+  command: ~/.bun/bin/bun upgrade
 
 - name: Set G++ 13 as Default
   become: True
