@@ -1,6 +1,6 @@
 [user]
-	name = Owen Park
-	email = owenmmp@gmail.com
+	name = John Doe
+	email = johndoe@github.com
 [core]
         editor = nvim
 [init]
