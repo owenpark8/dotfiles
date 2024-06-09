@@ -24,14 +24,14 @@
   ```
 
 2. Clone this repository
-   ```sh
-   git clone https://github.com/owenpark8/dotfiles.git ~/.dotfiles
-   ```
+  ```sh
+  git clone https://github.com/owenpark8/dotfiles.git ~/.dotfiles
+  ```
 
 3. Run a playbook
-   ```sh
-   bash ~/.dotfiles/ansible.sh <target>
-   ```
+  ```sh
+  bash ~/.dotfiles/ansible.sh <target>
+  ```
 ### Available targets:
    1. zsh.yml - Installs zsh, oh-my-zsh, and some plugins
    2. toolchains.yml - Installs latest versions of gcc, g++, clangd, python3, nvm, etc
