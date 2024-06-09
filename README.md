@@ -1,76 +1,40 @@
 <!-- PROJECT LOGO -->
 <div align="center">
-  <h3 align="center">config</h3>
+  <h3 align="center">dotfiles</h3>
 
   <p align="center">
-    Personal documentation so I can remember how to set up my system. Maybe I should automate this... nah.
+    Personal documentation so I can remember how to set up my system.
   </p>
   <p aligh="center">
-      (last tested on 5/22/24 Ubuntu 22.04.02)
+      (last tested on 6/8/24 Ubuntu 22.04.02)
   </p>
   
 </div>
 
 
 <!-- GETTING STARTED -->
-## Starting from fresh Ubuntu install
+## Running the Ansible Playbooks
 
-### The Basics
-
-1. Yea. Self explanatory.
-
+1. Install Ansible
   ```sh
   sudo apt update
-  ```
-  ```sh
-  sudo apt upgrade
-  ```
-2. Packages !
-
-  ```sh
-  sudo apt install git zsh neovim tmux i3 clangd clang-tidy clang-format cmake ccache python3-pip xdotool
+  sudo apt install software-properties-common
+  sudo add-apt-repository --yes --update ppa:ansible/ansible
+  sudo apt install ansible
   ```
 
-### Git
+2. Clone this repository
+   ```sh
+   git clone https://github.com/owenpark8/dotfiles.git ~/.dotfiles
+   ```
 
-1. [ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
-2. Done. Now clone this repo, buddy.
-```sh
-git clone git@github.com:owenpark8/config.git ~/config
-```
-
-### zsh
-
-1. Install Oh My Zsh
-  ```sh
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  ```
-2. Use .zshrc from this repo
-  ```sh
-  cp ~/config/.zshrc ~/.zshrc
-  ```
-3. Install fzf 
-  Follow the "Using git" instructions in the [repo](https://github.com/junegunn/fzf?tab=readme-ov-file#using-git)
-
-4. Install [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh) and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh)
-  ```sh
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  ```
-  ```sh
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  ```
-
-### i3
-
-1. Use config from this repo
-  ```sh
-  cp -r ~/config/i3 ~/.config
-  ```
-
-2. Install i3-resurrect
-  ```sh
-  pip3 install --user --upgrade i3-resurrect
-  ```
+3. Run a playbook
+   ```sh
+   bash ~/.dotfiles/ansible.sh <target>
+   ```
+### Available targets:
+   1. zsh.yml - Installs zsh, oh-my-zsh, and some plugins
+   2. toolchains.yml - Installs latest versions of gcc, g++, clangd, python3, nvm, etc
 
 <!-- TODO -->
 ## TODO
