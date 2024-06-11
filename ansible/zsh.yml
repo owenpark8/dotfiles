@@ -1,6 +1,4 @@
 ---
 - hosts: all
-  vars:
-    ubuntu_release: jammy
   roles:
     - zsh
