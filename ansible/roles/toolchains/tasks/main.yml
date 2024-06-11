@@ -144,3 +144,11 @@
     path: /usr/bin/clang-tidy-18
     link: /usr/bin/clang-tidy
     priority: 180
+
+- name: Set clang-format 18 as Default
+  become: True
+  alternatives:
+    name: clang-format
+    path: /usr/bin/clang-format-18
+    link: /usr/bin/clang-format
+    priority: 180
