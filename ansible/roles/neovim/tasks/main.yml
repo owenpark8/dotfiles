@@ -1,0 +1,38 @@
+- name: Install build dependencies
+  become: True
+  apt:
+    cache_valid_time: 604800
+    state: latest
+    name:
+      - ninja-build
+      - gettext
+      - cmake
+      - unzip
+      - curl
+      - build-essential
+
+- name: Clone Neovim source code into /usr/local/src
+  become: True
+  git:
+    repo: https://github.com/neovim/neovim.git
+    dest: /usr/local/src/neovim
+    version: stable
+
+- name: Build Neovim
+  become: True
+  make:
+    chdir: /usr/local/src/neovim
+    target: all
+    params:
+      CMAKE_BUILD_TYPE: RelWithDebInfo
+
+- name: Build DEB-package
+  become: True
+  command: cpack -G DEB
+  args:
+    chdir: /usr/local/src/neovim/build
+
+- name: Install Neovim DEB-package
+  become: True
+  apt:
+    deb: /usr/local/src/neovim/build/nvim-linux64.deb
