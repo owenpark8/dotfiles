@@ -3,12 +3,8 @@
   <h3 align="center">dotfiles</h3>
 
   <p align="center">
-    Personal documentation so I can remember how to set up my system.
+        My dotfiles and Ansible playbooks to set up my system.
   </p>
-  <p aligh="center">
-      (last tested on 6/8/24 Ubuntu 22.04.02)
-  </p>
-  
 </div>
 
 
@@ -30,11 +26,22 @@
 
 3. Run a playbook
   ```sh
-  bash ~/.dotfiles/ansible.sh <target>
+  bash ~/.dotfiles/ansible.sh <target> [--tags <optional tags>]
   ```
 ### Available targets:
-   1. zsh.yml - Installs zsh, oh-my-zsh, and some plugins
-   2. toolchains.yml - Installs latest versions of gcc, g++, clangd, python3, nvm, etc
+  1. **zsh.yml** - Installs zsh, oh-my-zsh, and some plugins
+  2. **toolchains.yml** - Installs C++, Python, Node (and Bun), and Rust toolchains
+     - To select a specific toolchain add any of the following tags:
+         * cpp
+         * python
+         * node
+         * rust
+     - For example, to install only the C++ (clang-18, g++-13, cmake, etc) and Rust (Cargo) toolchains, run the following:
+     ```sh
+     ~/.dotfiles/ansible.sh toolchains.yml --tags cpp,rust
+     ```
+     - Or, do not include any tags to install all toolchains
+  3. **neovim.yml** - Installs the latest stable version of neovim (builds from source)
 
 <!-- TODO -->
 ## TODO
