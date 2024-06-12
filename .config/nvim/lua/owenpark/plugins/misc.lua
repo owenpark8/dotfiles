@@ -1,6 +1,16 @@
 -- Highlight todo, notes, etc in comments
 return {
 
+    -- Open markdown previews in web browser
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+        build = function()
+            vim.fn["mkdp#util#install"]()
+        end,
+    },
+
     -- "gc" to comment visual regions/lines
     { "numToStr/Comment.nvim", opts = {} },
 
