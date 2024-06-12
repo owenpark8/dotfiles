@@ -29,13 +29,6 @@
     repo: deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ {{ ubuntu_release }} main
     filename: kitware
 
-- name: Upgrade APT Packages
-  become: True
-  apt:
-    cache_valid_time: 604800
-    state: latest
-    upgrade: yes
-
 - name: Install APT Packages
   become: True
   apt:

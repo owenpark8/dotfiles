@@ -2,6 +2,11 @@
 - hosts: all
   vars:
     ubuntu_release: jammy
+  pre_tasks:
+    - name: Update repositories
+      become: True
+      apt:
+        update_cache: True
   roles:
     - role: python
       tags: python
