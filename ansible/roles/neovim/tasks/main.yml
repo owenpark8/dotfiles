@@ -1,5 +1,12 @@
+- name: Check if neovim is installed
+  shell: command -v nvim
+  register: nvim_exists
+  ignore_errors: yes
+
 - name: Install build dependencies
+  when: nvim_exists is failed
   become: True
+  tags: install
   apt:
     cache_valid_time: 604800
     state: latest
@@ -12,14 +19,18 @@
       - build-essential
 
 - name: Clone Neovim source code into /usr/local/src
+  when: nvim_exists is failed
   become: True
+  tags: install
   git:
     repo: https://github.com/neovim/neovim.git
     dest: /usr/local/src/neovim
     version: stable
 
 - name: Build Neovim
+  when: nvim_exists is failed
   become: True
+  tags: install
   make:
     chdir: /usr/local/src/neovim
     target: all
@@ -27,12 +38,40 @@
       CMAKE_BUILD_TYPE: RelWithDebInfo
 
 - name: Build DEB-package
+  when: nvim_exists is failed
   become: True
+  tags: install
   command: cpack -G DEB
   args:
     chdir: /usr/local/src/neovim/build
 
 - name: Install Neovim DEB-package
+  when: nvim_exists is failed
   become: True
+  tags: install
   apt:
     deb: /usr/local/src/neovim/build/nvim-linux64.deb
+
+- name: Install lazy.nvim plugin dependencies
+  become: True
+  tags: config
+  apt:
+    cache_valid_time: 604800
+    state: latest
+    name:
+      - ripgrep
+      - fd-find
+      - xclip
+
+- name: Ensure .config directory exists
+  tags: config
+  file:
+    path: "{{ ansible_user_dir }}/.config"
+    state: directory
+
+- name: Create a symlink for nvim configuration
+  tags: config
+  file:
+    src: "{{ role_path }}/files/nvim"
+    dest: "{{ ansible_user_dir }}/.config/nvim"
+    state: link
