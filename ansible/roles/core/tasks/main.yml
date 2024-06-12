@@ -1,0 +1,26 @@
+- name: Install useful APT packages
+  become: True
+  apt:
+    cache_valid_time: 604800
+    state: latest
+    name:
+      - sudo
+      - i3
+      - xdotool # for i3-resurrect
+      - gnome-tweaks
+      - tmux
+      - htop
+      - curl
+      - unzip
+      - rsync
+      - libbullet-dev
+      - libglfw3-dev
+      - libx11-xcb-dev
+      - libnl-3-dev
+      - libnl-route-3-dev
+      - libtbb-dev
+      - libopencv-dev
+      - libgstreamer1.0-dev
+      - libgstreamer-plugins-base1.0-dev
+      - vainfo
+      - x264

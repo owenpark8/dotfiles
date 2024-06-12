@@ -42,18 +42,9 @@
     cache_valid_time: 604800
     state: latest
     name:
-      - sudo
       - cmake
       - ccache # Caches intermediate build files, speeds up compilation over time
       - ninja-build # Faster than make
-      - i3
-      - xdotool # for i3-resurrect
-      - gnome-tweaks
-      - tmux
-      - htop
-      - curl
-      - unzip
-      - rsync
       - clang-18
       - clangd-18
       - clang-tidy-18
@@ -62,37 +53,6 @@
       - lldb-18
       - gcc-13
       - g++-13
-      - libbullet-dev
-      - libglfw3-dev
-      - libx11-xcb-dev
-      - libnl-3-dev
-      - libnl-route-3-dev
-      - libtbb-dev
-      - libopencv-dev
-      - libgstreamer1.0-dev
-      - libgstreamer-plugins-base1.0-dev
-      - vainfo
-      - x264
-
-- name: Install nvm
-  ansible.builtin.shell: >
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-  args:
-    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-
-- name: Download Bun Installer
-  get_url:
-    url: https://bun.sh/install
-    dest: /tmp/bun_installer.sh
-    mode: 0755
-
-- name: Run Bun Installer
-  command: /tmp/bun_installer.sh
-  args:
-    creates: ~/.bun/bin/bun
-
-- name: Upgrade Bun
-  command: ~/.bun/bin/bun upgrade
 
 - name: Set G++ 13 as Default
   become: True
