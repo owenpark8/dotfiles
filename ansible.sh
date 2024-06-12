@@ -4,11 +4,17 @@
 # Taken from mrover-ros (thanks Quintin)
 
 if [ "$#" -le 0 ]; then
-    echo "Usage: $0 <playbook> <extra argument>"
+    echo "Usage: $0 <playbook> <extra arguments>"
     exit 1
 fi
 
+playbook=$1
+
+shift
+
+extra_args="$@"
+
 sudo -v # Ensure Ansible has sudo permission
 
-ansible-playbook -i "localhost," -c local ./ansible/"$1" --extra-vars "$2"
+ansible-playbook -i "localhost," -c local ./ansible/${playbook} ${extra_args}
 
