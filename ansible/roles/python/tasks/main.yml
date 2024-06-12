@@ -1,0 +1,11 @@
+- name: Install Python APT packages
+  become: True
+  apt:
+    cache_valid_time: 604800
+    state: latest
+    name:
+      - python3-pip
+      - python3-virtualenvwrapper
+      - python3.10
+      - python3.10-dev
+      - python3.10-venv

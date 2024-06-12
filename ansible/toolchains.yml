@@ -3,4 +3,7 @@
   vars:
     ubuntu_release: jammy
   roles:
-    - toolchains
+    - role: python
+      tags: python
+    - role: cpp
+      tags: cpp
