@@ -165,8 +165,9 @@ return { -- LSP Configuration & Plugins
             --    https://github.com/pmizio/typescript-tools.nvim
             --
             -- But for many setups, the LSP (`tsserver`) will work just fine
-            -- tsserver = {},
-            --
+            tsserver = {},
+            htmx = {},
+            html = {},
 
             lua_ls = {
                 -- cmd = {...},
