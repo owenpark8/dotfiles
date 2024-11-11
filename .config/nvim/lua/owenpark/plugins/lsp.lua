@@ -168,7 +168,7 @@ return { -- LSP Configuration & Plugins
             tsserver = {},
             htmx = {},
             html = {},
-
+            marksman = {},
             lua_ls = {
                 -- cmd = {...},
                 -- filetypes = { ...},
