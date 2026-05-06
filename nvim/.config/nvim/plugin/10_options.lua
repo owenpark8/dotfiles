@@ -17,8 +17,11 @@ vim.o.splitkeep         = 'screen'  -- Reduce scroll during window split
 vim.o.scrolloff         = 10        -- Minimal number of screen lines to keep above and below the cursor
 vim.o.nu                = true      -- "Hybrid" line numbers
 vim.o.relativenumber    = true      -- "Hybrid" line numbers
-
-
+vim.api.nvim_create_autocmd("TextYankPost", { -- Highlight on yank
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
 
 -- Editing ====================================================================
 vim.o.smartindent   = true          -- Make indenting smart

@@ -1,12 +1,4 @@
-local now, now_if_args, later, on_filetype = Config.now, Config.now_if_args, Config.later, Config.on_filetype
-
--- Theme =========================================================================
-now(function()
-    vim.pack.add({ "https://github.com/folke/tokyonight.nvim" })
-    vim.cmd.colorscheme("tokyonight-night")
-
-    vim.cmd.hi("Comment gui=none") -- Configure highlights
-end)
+local now, now_if_args, later = Config.now, Config.now_if_args, Config.later
 
 -- Neo-tree =========================================================================
 now(function()
@@ -162,17 +154,4 @@ now_if_args(function()
         vim.lsp.config(name, server)
         vim.lsp.enable(name)
     end
-end)
-
--- Filetype: markdown =========================================================
-on_filetype("markdown", function()
-    local build = function()
-        vim.cmd.packadd("markdown-preview.nvim")
-        vim.fn["mkdp#util#install"]()
-    end
-    Config.on_packchanged("markdown-preview.nvim", { "install", "update" }, build, "Build markdown-preview")
-    add({ "https://github.com/iamcco/markdown-preview.nvim" })
-
-    -- Do not close the preview tab when switching to other buffers
-    vim.g.mkdp_auto_close = 0
 end)
