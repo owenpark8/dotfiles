@@ -1,16 +1,15 @@
+[general]
 import = [
     "~/.config/alacritty/themes/tokyo-night-storm.toml"
 ]
 
 [window]
-
 opacity = 0.9
 
 padding.x = 10
 padding.y = 10
 
 [font]
-
 normal.family = "JetBrainsMono Nerd Font"
 bold.family = "JetBrainsMono Nerd Font"
 italic.family = "JetBrainsMono Nerd Font"
