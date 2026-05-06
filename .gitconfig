@@ -1,7 +1,7 @@
 [user]
-	name = John Doe
-	email = johndoe@github.com
+    name = John Doe
+    email = johndoe@github.com
 [core]
-        editor = nvim
+    editor = nvim
 [init]
-        defaultBranch = main
+    defaultBranch = main
