@@ -1,26 +1,55 @@
 local now, now_if_args, later = Config.now, Config.now_if_args, Config.later
-
--- Neo-tree =========================================================================
+-- nvim-tree =========================================================================
 now(function()
     vim.pack.add({
         {
-            src = "https://github.com/nvim-neo-tree/neo-tree.nvim",
-            version = vim.version.range("3"),
+            src = "https://github.com/nvim-tree/nvim-tree.lua",
         },
-        -- dependencies
-        "https://github.com/nvim-lua/plenary.nvim",
-        "https://github.com/MunifTanjim/nui.nvim",
-        -- optional, but recommended
         "https://github.com/nvim-tree/nvim-web-devicons",
+        "https://github.com/nvim-lua/plenary.nvim",
     })
-    require("neo-tree").setup({
-        filesystem = {
-            window = {
-                mappings = {
-                    ["\\"] = "close_window",
-                },
+
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+
+    vim.keymap.set("n", "\\", ":NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+
+    local HEIGHT_RATIO = 0.8 -- You can change this
+    local WIDTH_RATIO = 0.5 -- You can change this too
+
+    require("nvim-tree").setup({
+        disable_netrw = true,
+        hijack_netrw = true,
+        respect_buf_cwd = true,
+        sync_root_with_cwd = true,
+        view = {
+            relativenumber = true,
+            float = {
+                enable = true,
+                open_win_config = function()
+                    local screen_w = vim.opt.columns:get()
+                    local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+                    local window_w = screen_w * WIDTH_RATIO
+                    local window_h = screen_h * HEIGHT_RATIO
+                    local window_w_int = math.floor(window_w)
+                    local window_h_int = math.floor(window_h)
+                    local center_x = (screen_w - window_w) / 2
+                    local center_y = ((vim.opt.lines:get() - window_h) / 2)
+                        - vim.opt.cmdheight:get()
+                    return {
+                        border = "rounded",
+                        relative = "editor",
+                        row = center_y,
+                        col = center_x,
+                        width = window_w_int,
+                        height = window_h_int,
+                    }
+                end,
             },
-        },
+            width = function()
+                return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
+            end,
+        }
     })
 end)
 
@@ -38,9 +67,9 @@ now_if_args(function()
     -- Ensure installed
     --stylua: ignore
     local ensure_languages = {
-      'bash', 'c',          'cpp',  'css',   'diff', 'go',
-      'html', 'javascript', 'json', 'julia', 'nu',   'php', 'python',
-      'r',    'regex',      'rst',  'rust',  'toml', 'tsx', 'typescript', 'yaml',
+        'bash', 'c', 'cpp', 'css', 'diff', 'go',
+        'html', 'javascript', 'json', 'julia', 'nu', 'php', 'python',
+        'r', 'regex', 'rst', 'rust', 'toml', 'tsx', 'typescript', 'yaml',
     }
     local isnt_installed = function(lang)
         return #vim.api.nvim_get_runtime_file("parser/" .. lang .. ".*", false) == 0
@@ -69,7 +98,8 @@ end)
 later(function()
     vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
 
-    require("conform").setup({
+    local conform = require("conform")
+    conform.setup({
         default_format_opts = {
             -- Allow formatting from LSP server if no dedicated formatter is available
             lsp_format = "fallback",
@@ -96,7 +126,6 @@ later(function()
             end
             return { timeout_ms = 500, lsp_format = "fallback" }
         end,
-        -- Map of filetype to formatters
     })
 end)
 
@@ -129,7 +158,7 @@ now_if_args(function()
         },
         cmake = {},
         pyright = {},
-        gopls = {},
+        -- gopls = {},
         rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -142,6 +171,7 @@ now_if_args(function()
         htmx = {},
         html = {},
         marksman = {},
+        verible = {},
     }
 
     -- Ensure the servers and tools above are installed
@@ -154,4 +184,34 @@ now_if_args(function()
         vim.lsp.config(name, server)
         vim.lsp.enable(name)
     end
+end)
+
+-- Harpoon
+later(function()
+    vim.pack.add({ {
+        src = "https://github.com/ThePrimeagen/harpoon",
+        version = "harpoon2"
+    } })
+
+    local harpoon = require("harpoon")
+    harpoon:setup()
+
+    vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+    vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+    vim.keymap.set("n", "<C-y>", function() harpoon:list():select(1) end)
+    vim.keymap.set("n", "<C-u>", function() harpoon:list():select(2) end)
+    vim.keymap.set("n", "<C-i>", function() harpoon:list():select(3) end)
+    vim.keymap.set("n", "<C-o>", function() harpoon:list():select(4) end)
+
+    -- Toggle previous & next buffers stored within Harpoon list
+    vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+    vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
+end)
+
+-- fzf-lua
+later(function()
+    vim.pack.add({
+        "https://github.com/ibhagwan/fzf-lua"
+    })
 end)

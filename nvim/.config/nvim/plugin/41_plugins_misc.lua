@@ -39,8 +39,49 @@ on_filetype("markdown", function()
         vim.fn["mkdp#util#install"]()
     end
     Config.on_packchanged("markdown-preview.nvim", { "install", "update" }, build, "Build markdown-preview")
-    add({ "https://github.com/iamcco/markdown-preview.nvim" })
+    vim.pack.add({ "https://github.com/iamcco/markdown-preview.nvim" })
 
     -- Do not close the preview tab when switching to other buffers
     vim.g.mkdp_auto_close = 0
+end)
+
+-- indent-blankline
+later(function()
+    vim.pack.add({ "https://github.com/lukas-reineke/indent-blankline.nvim" })
+
+    require("ibl").setup()
+end)
+
+-- nvim-scrollbar
+later(function()
+    vim.pack.add({ "https://github.com/petertriho/nvim-scrollbar" })
+    local colors = require("tokyonight.colors").setup()
+    require("scrollbar").setup({
+        handle = {
+            color = colors.orange,
+        },
+        marks = {
+            Search = { color = colors.bg_dark },
+            Error = { color = colors.error },
+            Warn = { color = colors.warning },
+            Info = { color = colors.info },
+            Hint = { color = colors.hint },
+            Misc = { color = colors.purple },
+        }
+    })
+end)
+
+-- bigfile
+now_if_args(function()
+    vim.pack.add({ "https://github.com/folke/snacks.nvim" })
+
+    require("snacks").setup({
+        bigfile = {},
+    })
+end)
+
+-- tmux.nvim
+later(function()
+    vim.pack.add({ "https://github.com/aserowy/tmux.nvim" })
+    require("tmux").setup()
 end)

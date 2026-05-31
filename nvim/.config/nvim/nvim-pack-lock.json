@@ -16,6 +16,23 @@
       "rev": "889e2e96edef4e144965571d46f7a77bcc4d0ddf",
       "src": "https://github.com/j-hui/fidget.nvim"
     },
+    "fzf-lua": {
+      "rev": "3ff77862f6c62f7b850668435ae43aa026de8758",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
+    "harpoon": {
+      "rev": "87b1a3506211538f460786c23f98ec63ad9af4e5",
+      "src": "https://github.com/ThePrimeagen/harpoon",
+      "version": "'harpoon2'"
+    },
+    "indent-blankline.nvim": {
+      "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
+      "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
+    },
+    "markdown-preview.nvim": {
+      "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
+      "src": "https://github.com/iamcco/markdown-preview.nvim"
+    },
     "mason-lspconfig.nvim": {
       "rev": "0c2823e0418f3d9230ff8b201c976e84de1cb401",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
@@ -37,9 +54,21 @@
       "rev": "de740991c12411b663994b2860f1a4fd0937c130",
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
+    "nvim-hlslens": {
+      "rev": "be2d7b2be01860b5445a007ff2bc72b29896db6b",
+      "src": "https://github.com/kevinhwang91/nvim-hlslens"
+    },
     "nvim-lspconfig": {
       "rev": "31026a13eefb20681124706a79fc1df6bf11ab27",
       "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-scrollbar": {
+      "rev": "f8e87b96cd6362ef8579be456afee3b38fd7e2a8",
+      "src": "https://github.com/petertriho/nvim-scrollbar"
+    },
+    "nvim-tree.lua": {
+      "rev": "f9bfc0059eca24546b69a7006110463da4808f8f",
+      "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
@@ -56,6 +85,14 @@
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "snacks.nvim": {
+      "rev": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e",
+      "src": "https://github.com/folke/snacks.nvim"
+    },
+    "tmux.nvim": {
+      "rev": "32ceaf2793582955ef9576809730878c4d2d9426",
+      "src": "https://github.com/aserowy/tmux.nvim"
     },
     "todo-comments.nvim": {
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
