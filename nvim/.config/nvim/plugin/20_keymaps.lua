@@ -70,6 +70,8 @@ vim.g.disable_autoformat = true
 nmap_leader("lF", toggle_autoformat,                                                                "Format-on-save toggle")
 nmap_leader("lf", "<Cmd>lua require('conform').format({ async = true, lsp_fallback = true })<CR>",  "Format")
 nmap_leader("lr", "<Cmd>lua vim.lsp.buf.rename()<CR>",                                              "LSP Rename")
+nmap_leader("lD", "<Cmd>lua vim.lsp.buf.declaration()<CR>",                                         "Go to declaration")
+nmap_leader("ld", "<Cmd>lua vim.lsp.buf.definition()<CR>",                                          "Go to definition")
 
 xmap_leader("lf", "<Cmd>lua require('conform').format({ async = true, lsp_fallback = true })<CR>", "Format selection")
 
